@@ -7,7 +7,6 @@ Production-ready Telegram bot for downloading videos from YouTube, Twitter/X, Fa
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │   Vercel    │────▶│  Redis Queue  │────▶│  Railway Worker  │
-│  Webhook    │     │  (Upstash)   │     │  (Download+Upload)│
 │  API Layer  │     │ download/    │     │                  │
 │             │     │ upload/DLQ   │     │  yt-dlp → Telegram│
 └─────────────┘     └──────────────┘     └─────────────────┘
@@ -15,7 +14,6 @@ Production-ready Telegram bot for downloading videos from YouTube, Twitter/X, Fa
        ▼                    ▼                       ▼
 ┌─────────────┐     ┌──────────────┐     ┌─────────────────┐
 │  PostgreSQL  │     │   Redis      │     │  Telegram Bot   │
-│  (Neon)     │     │   Cache      │     │  API (send video)│
 │  Metadata   │     │  video:hash  │     │                  │
 └─────────────┘     └──────────────┘     └─────────────────┘
 ```

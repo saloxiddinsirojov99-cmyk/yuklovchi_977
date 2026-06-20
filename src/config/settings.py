@@ -43,6 +43,9 @@ class AppSettings(BaseSettings):
     # --- Prometheus ---
     prometheus_port: int = Field(8000, alias="PROMETHEUS_PORT")
 
+    # --- Sentry ---
+    sentry_dsn: Optional[str] = Field(None, alias="SENTRY_DSN")
+
     @field_validator("telegram_bot_token", mode="before")
     @classmethod
     def validate_token(cls, v: str) -> str:

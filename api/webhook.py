@@ -14,10 +14,14 @@ from src.common.constants import DEDUP_LOCK_TTL_SEC, REDIS_DEDUP_PREFIX
 from src.config.settings import settings
 from src.db.session import init_db
 from src.utils.logger import get_logger
+from src.utils.sentry import init_sentry, capture_exception
 from src.utils.url_hasher import canonical_url, url_hash, get_dedup_key
 from src.utils.url_detector import detect_source, is_supported_url
 from telegram import Update
 from telegram.ext import Application, ApplicationBuilder
+
+# Initialize Sentry on module load
+init_sentry(settings.sentry_dsn)
 
 logger = get_logger(__name__)
 _app: Application | None = None
