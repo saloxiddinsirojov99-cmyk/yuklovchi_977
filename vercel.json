@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/**/*.py",
+      "use": "@vercel/python",
+      "config": {
+        "runtime": "python3.12",
+        "maxDuration": 10
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/webhook", "dest": "/api/webhook.py" },
+    { "src": "/health", "dest": "/api/health.py" },
+    { "src": "/start-bot", "dest": "/api/start_bot.py" },
+    { "src": "/queue-status", "dest": "/api/queue_status.py" }
+  ],
+  "functions": {
+    "api/webhook.py": { "memory": 256, "maxDuration": 10 },
+    "api/health.py": { "memory": 128, "maxDuration": 5 },
+    "api/start_bot.py": { "memory": 128, "maxDuration": 10 },
+    "api/queue_status.py": { "memory": 128, "maxDuration": 10 }
+  }
+}
